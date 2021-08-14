@@ -48,12 +48,12 @@ const data:IBookmarkNote[] = [{
     description: "",
     img: ""
   },
-  tags: ["react", "nextjs", "blog"]
+  tags: ["react", "nextjs", "article"]
 },
 {
   link: "https://github.com/vercel/next.js/issues/26371",
   meta: {
-    title: "Building a single-page application with next.js and react router",
+    title: "Proposal: `Wrapper` component for groups of routes in folders · Issue #26371 · vercel/next.js · GitHub",
     description: "",
     img: ""
   },
@@ -62,7 +62,7 @@ const data:IBookmarkNote[] = [{
 {
   link: "https://www.schemecolor.com/magenta-silver-wedding-theme-colors.php",
   meta: {
-    title: "Building a single-page application with next.js and react router",
+    title: "Magenta silver wedding theme",
     description: "",
     img: ""
   },
@@ -75,7 +75,7 @@ const data:IBookmarkNote[] = [{
     description: "",
     img: ""
   },
-  tags: ["project", "theremin", "howto", "electronics"]
+  tags: ["project", "theremin", "article", "electronics"]
 },
 {
   link: "http://www.thereminworld.com/Article/14695/a-diy-wine-box-theremin",
@@ -84,7 +84,7 @@ const data:IBookmarkNote[] = [{
     description: "",
     img: ""
   },
-  tags: ["project", "theremin", "howto", "electronics"]
+  tags: ["project", "theremin", "article", "electronics"]
 },
 {
   link: "https://www.cs.nmsu.edu/~rth/EMTheremin.pdf",
@@ -98,16 +98,16 @@ const data:IBookmarkNote[] = [{
 {
   link: "https://mitxela.com/projects/hardware",
   meta: {
-    title: "Hardware",
+    title: "hardware - projects - mitxela.com",
     description: "",
     img: ""
   },
-  tags: ["electronics","blog", "idea"]
+  tags: ["electronics","article", "idea"]
 },
 {
   link: "https://www.amazon.de/Novation-AMS-LAUNCHKEY-MINI-MK3-Launchkey-Mini-MK3/dp/B07WJZCPT3/ref=sr_1_3?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=BGP44LIH0S0V&dchild=1&keywords=novation+launchkey+mini+mk3+midi-controller&qid=1623488503&sprefix=Novation+Launchkey+Mini+%5BMK3%5D+%2Caps%2C173&sr=8-3",
   meta: {
-    title: "Hardware",
+    title: "Novation-AMS-LaunchKey",
     description: "",
     img: ""
   },
@@ -117,20 +117,20 @@ const data:IBookmarkNote[] = [{
 {
   link: "https://splice.com/features/sounds",
   meta: {
-    title: "Hardware",
+    title: "splice sounds",
     description: "",
     img: ""
   },
   tags: ["music","product"]
 },
 {
-  link: "https://www.valentinog.com/blog/webpack/",
+  link: "https://www.valentinog.com/article/webpack/",
   meta: {
-    title: "Hardware",
+    title: "Webpack",
     description: "",
     img: ""
   },
-  tags: ["webpack","blog"]
+  tags: ["webpack","article"]
 }]
 
 

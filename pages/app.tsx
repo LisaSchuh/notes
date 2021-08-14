@@ -5,21 +5,34 @@ import { useTags, useNotes } from './hooks/useTags';
 
 export default function App() {    
     const [activeTags, setActiveTags] = useState<Tag[]>([]);
-    const tags = useTags();
+    const tags = useTags(activeTags);
     const notes = useNotes(activeTags);
 
+    const renderTags = (tags:Tag[]) => {
+        return tags.map(t => <button 
+            className={`${styles.filter__tag} ${activeTags.includes(t) ? "test123" : ""}`} 
+            onClick={() => {
+                    setActiveTags( activeTags.includes(t) ? activeTags.filter(at => at != t) : activeTags.concat(t))  
+                }
+            }
+            >
+                {t}
+            </button>)
+    }
+
     return <main className={styles.main}>
-        <header>
-            <div className={styles.breadcrump}>Electronics - Projects - Theremin</div>
+        <nav>
+            <div className={styles.filter}>
+                { activeTags && renderTags(activeTags)}
+            </div>
             <div className={styles.search}>
                 <label >search</label>
                 <input />
             </div>
-        </header>
-        {/* warum geht mein debugger nicht */}
+        </nav>
 
         <div className={styles.filter}>
-            { tags && tags.map(t => <button className={styles.filter__tag} onClick={() => {setActiveTags(activeTags.concat(t))}}>{t}</button>)}
+            { tags && renderTags(tags)}
         </div>
 
 
