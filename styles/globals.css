@@ -4,6 +4,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+
+  background-color: #d6d6d6;
 }
 
 a {
@@ -13,4 +15,14 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --main-bg-color: yellow;
+  --secondary-bg-color: blue;
+  --main-color: red;
+  --secondary-color: cyan;
+  --text-color-dark-bg: white;
+  --text-color-light-bg: black;
+  --text-color-link: ;
 }

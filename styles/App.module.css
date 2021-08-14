@@ -1,0 +1,41 @@
+.main {
+  max-width: 1024px;
+  margin: auto;
+  background-color: #d6d6d6;
+}
+
+.breadcrump {
+}
+
+.search {
+}
+.filter {
+  background-color: white;
+}
+
+.filter .filter__tag {
+  color: white;
+  background-color: #c27;
+  padding: 1.5em;
+  font-weight: bold;
+  font-family: helvetica;
+  border: none;
+  outline: none;
+  border-radius: 2em;
+}
+
+.notes {
+}
+
+.note {
+}
+
+.note .note__img {
+  max-width: 1024px;
+}
+
+.note .note__title {
+}
+
+.note .note__description {
+}
