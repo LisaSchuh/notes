@@ -4,9 +4,9 @@ import { ApolloServer } from "apollo-server-micro";
 import neo4j from "neo4j-driver";
 
 // (You may need to replace your connection details, username and password)
-const AURA_ENDPOINT = 'CONFIG_AURA_ENDPOINT';
-const USERNAME = 'CONFIG_AURA_USERNAME';
-const PASSWORD = 'CONFIG_AURA_PASSWORD';
+const AURA_ENDPOINT = process.env.CONFIG_AURA_ENDPOINT ?? "";
+const USERNAME = process.env.CONFIG_AURA_USERNAME ?? "";
+const PASSWORD = process.env.CONFIG_AURA_PASSWORD ?? "";
 
 // Create Neo4j driver instance
 const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD), {encrypted:true, trust:'TRUST_SYSTEM_CA_SIGNED_CERTIFICATES'});
