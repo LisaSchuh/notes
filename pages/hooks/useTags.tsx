@@ -1,17 +1,26 @@
 import {useEffect, useState} from "react";
 import  { IBookmarkNote, Tag } from "../api/notes";
 
+const MAXTAGS = 10;
 interface TagStatistic {
     tag:Tag,
+    relatedTags: Tag[],
     count:number
 }
 
-export function useTags(filterBy:Tag[]) {
+export function useTags(filterBy:Tag[], searchTerm:string) {
     const [tagStatistic, setTagStatistic] = useState<TagStatistic[]>([]);
     const [visibleTags, setVisibleTags] = useState<Tag[]>([]);
 
     const getUniqueTags = (tags:Tag[]):Tag[] => {
         return [... new Set(tags)];
+    }
+
+    const tagInFilterOrSearch = (ts: TagStatistic):boolean => {
+        const notAlreadySelected = filterBy.length ? filterBy.filter(t => ts.tag === t).length == 0 : true;
+        const inFilter = filterBy.length ? filterBy.filter(t => ts.relatedTags.includes(t)).length > 0 : true;
+        const inSearch = ts.tag.includes(searchTerm);
+        return notAlreadySelected && inFilter && inSearch ;
     }
 
     useEffect(() => {
@@ -20,8 +29,11 @@ export function useTags(filterBy:Tag[]) {
                 let tags:Tag[] = [];
                 notes.forEach(n => tags = tags.concat(n.tags) )
                 setTagStatistic(getUniqueTags(tags).map(uniqueTag => {
+                    let relatedTags:Tag[] = [];
+                    notes.filter(n => n.tags.includes(uniqueTag)).forEach(n => relatedTags = relatedTags.concat(n.tags) );
                     return {
                         tag: uniqueTag,
+                        relatedTags: getUniqueTags(relatedTags),
                         count: tags.filter(t => t === uniqueTag).length 
                     }
                 }));
@@ -30,11 +42,11 @@ export function useTags(filterBy:Tag[]) {
 
     useEffect(() => {
         const sortedStatistics = tagStatistic
-            .filter(ts => filterBy.length ? filterBy.filter(t => ts.tag === t).length == 0 : true)
+            .filter(tagInFilterOrSearch)
             .sort((tsA, tsB) => tsA.count - tsB.count)
             .reverse();
-        setVisibleTags(sortedStatistics.slice(0,5).map(ts => ts.tag));
-    }, [tagStatistic, filterBy]);
+        setVisibleTags(sortedStatistics.slice(0,MAXTAGS).map(ts => ts.tag));
+    }, [tagStatistic, filterBy, searchTerm]);
 
     return visibleTags;
 }

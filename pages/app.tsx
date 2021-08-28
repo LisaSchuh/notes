@@ -5,7 +5,8 @@ import { useTags, useNotes } from './hooks/useTags';
 
 export default function App() {    
     const [activeTags, setActiveTags] = useState<Tag[]>([]);
-    const tags = useTags(activeTags);
+    const [searchInput, setSearchInput] = useState<string>("");
+    const tags = useTags(activeTags, searchInput);
     const notes = useNotes(activeTags);
 
     const renderTags = (tags:Tag[]) => {
@@ -27,7 +28,7 @@ export default function App() {
             </div>
             <div className={styles.search}>
                 <label >search</label>
-                <input />
+                <input value={searchInput} onChange={(el)=>{ setSearchInput(el.target.value);}}/>
             </div>
         </nav>
 
