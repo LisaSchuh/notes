@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import  { IBookmarkNote, Tag } from "../api/notes";
+import  { IBookmarkNote, Tag } from "../pages/api/notes";
 
 const MAXTAGS = 10;
 interface TagStatistic {

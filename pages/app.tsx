@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/App.module.css'
 import { Tag } from './api/notes';
-import { useTags, useNotes } from './hooks/useTags';
+import { useTags, useNotes } from '../hooks/useTags';
 
 export default function App() {    
     const [activeTags, setActiveTags] = useState<Tag[]>([]);
@@ -10,7 +10,7 @@ export default function App() {
     const notes = useNotes(activeTags);
 
     const renderTags = (tags:Tag[]) => {
-        return tags.map(t => <button 
+        return tags.map(t => <button key={t}
             className={`${styles.filter__tag} ${activeTags.includes(t) ? "test123" : ""}`} 
             onClick={() => {
                     setActiveTags( activeTags.includes(t) ? activeTags.filter(at => at != t) : activeTags.concat(t))  
@@ -39,7 +39,7 @@ export default function App() {
 
         <div className={styles.notes} >
             { notes && notes.map(note => 
-                <div className={styles.note}>
+                <div className={styles.note} key={note.guid}>
                     <div className="note note__img">
                                 {/* <img src="https://bikepacking.com/wp-content/uploads/2013/06/altravesur-bikepacking-route.jpg"></img> */}
                     </div>
