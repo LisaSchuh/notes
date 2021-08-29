@@ -12,12 +12,24 @@ const PASSWORD = process.env.CONFIG_AURA_PASSWORD ?? "";
 const driver = neo4j.driver(AURA_ENDPOINT, neo4j.auth.basic(USERNAME, PASSWORD), {encrypted:true, trust:'TRUST_SYSTEM_CA_SIGNED_CERTIFICATES'});
 
 const typeDefs = `
-  type Query {
-    tags: [Tag!]!
-  }
-  type Tag {
-    name: String
-  }
+    type Tag {
+        name: String!,
+        created: DateTime! @timestamp(operations: [CREATE]),
+        notes: [Note!]! @relationship(type: "TAGGED_WITH", direction: IN),
+        taggedTogether: [Tag!]! @relationship(type: "TAGGED_TOGEHTER")
+        taggedTogetherOUT: [Tag!]! @relationship(type: "TAGGED_TOGEHTER", direction: OUT)
+    }
+
+    type Note {
+        guid: String!,
+        title: String,
+        text: String,
+        img: String,
+        link: String,
+        created: DateTime! @timestamp(operations: [CREATE]),
+        lastUpdated: DateTime! @timestamp(operations: [UPDATE]),
+        tags: [Tag!]! @relationship(type: "TAGGED_WITH", direction: OUT)
+    }
 `;
 
 // Create instance that contains executable GraphQL schema from GraphQL type definitions
