@@ -16,18 +16,18 @@ const typeDefs = `
         name: String!,
         created: DateTime! @timestamp(operations: [CREATE]),
         notes: [Note!]! @relationship(type: "TAGGED_WITH", direction: IN),
-        taggedTogether: [Tag!]! @relationship(type: "TAGGED_TOGEHTER")
+        taggedTogether: [Tag!]! @relationship(type: "TAGGED_TOGEHTER", direction: IN)
         taggedTogetherOUT: [Tag!]! @relationship(type: "TAGGED_TOGEHTER", direction: OUT)
     }
 
     type Note {
-        guid: String!,
+        guid: ID! @id(autogenerate: true, unique: true),
         title: String,
         text: String,
         img: String,
         link: String,
         created: DateTime! @timestamp(operations: [CREATE]),
-        lastUpdated: DateTime! @timestamp(operations: [UPDATE]),
+        lastUpdated: DateTime! @timestamp(operations: [UPDATE, CREATE]),
         tags: [Tag!]! @relationship(type: "TAGGED_WITH", direction: OUT)
     }
 `;
